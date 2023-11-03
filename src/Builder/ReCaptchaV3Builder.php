@@ -9,13 +9,13 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha;
+namespace Nopal\Captcha\ReCaptcha;
 
 use Illuminate\Support\Arr;
 
 /**
  * Class ReCaptchaBuilderV3
- * @package Biscolab\ReCaptcha
+ * @package Nopal\Captcha\ReCaptcha
  */
 class ReCaptchaBuilderV3 extends ReCaptchaBuilder
 {

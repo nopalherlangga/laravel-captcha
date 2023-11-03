@@ -8,14 +8,14 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha;
+namespace Nopal\Captcha\ReCaptcha;
 
-use Biscolab\ReCaptcha\Exceptions\InvalidConfigurationException;
 use Illuminate\Support\Arr;
+use Nopal\Captcha\Exceptions\InvalidConfigurationException;
 
 /**
  * Class ReCaptchaBuilderInvisible
- * @package Biscolab\ReCaptcha
+ * @package Nopal\Captcha\ReCaptcha
  */
 class ReCaptchaBuilderInvisible extends ReCaptchaBuilder
 {

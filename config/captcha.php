@@ -15,30 +15,43 @@
 return [
 
     /**
-     *
-     * The site key
-     * get site key @ www.google.com/recaptcha/admin
-     *
+     * Captcha default version
+     * Supported: "recaptcha_v2", "recaptcha_invisible", "recaptcha_v3", "trunstile", "hcaptcha",
      */
-    'api_site_key'                 => env('RECAPTCHA_SITE_KEY', ''),
+    'version' => env('CAPTCHA_VERSION', 'recaptcha_v2'),
 
-    /**
-     *
-     * The secret key
-     * get secret key @ www.google.com/recaptcha/admin
-     *
-     */
-    'api_secret_key'               => env('RECAPTCHA_SECRET_KEY', ''),
+    'recaptcha' => [
+        
+        /**
+         * The site key
+         * get site key @ www.google.com/recaptcha/admin
+         */
+        'site_key' => env('RECAPTCHA_SITE_KEY', env('CAPTCHA_SITE_KEY', '')),
+    
+        /**
+         * The secret key
+         * get secret key @ www.google.com/recaptcha/admin
+         */
+        'secret_key' => env('RECAPTCHA_SECRET_KEY', env('CAPTCHA_SECRET_KEY', '')),
 
-    /**
-     *
-     * ReCATCHA version
-     * Supported: "v2", "invisible", "v3",
-     *
-     * get more info @ https://developers.google.com/recaptcha/docs/versions
-     *
-     */
-    'version'                      => 'v2',
+    ],
+
+    'turnstile' => [
+        
+        /**
+         * The site key
+         * get site key @ dash.cloudflare.com/XXXXX/turnstile
+         */
+        'site_key' => env('TURNSTILE_SITE_KEY', env('CAPTCHA_SITE_KEY', '')),
+    
+        /**
+         * The secret key
+         * get secret key @ dash.cloudflare.com/XXXXX/turnstile
+         */
+        'secret_key' => env('TURNSTILE_SECRET_KEY', env('CAPTCHA_SECRET_KEY', '')),
+
+    ],
+
 
     /**
      *

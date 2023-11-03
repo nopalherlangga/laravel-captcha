@@ -1,76 +1,43 @@
 <?php
 
 /**
- * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaBuilder.php
- * author: Roberto Belotti - roby.belotti@gmail.com
- * web : robertobelotti.com, github.com/biscolab
+ * Copyright (c) 2023 - present
+ * LaravelCaptcha - TurnstileBuilder.php
+ * author: Nopal Herlangga - 49229021+nopalherlangga@users.noreply.github.com
+ * web : github.com/nopalherlangga
  * Initial version created on: 12/9/2018
- * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
+ * MIT license: https://github.com/nopalherlangga/laravel-captcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha;
+namespace Nopal\Captcha\Turnstile;
 
 use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\IpUtils;
 
 /**
- * Class ReCaptchaBuilder
- * @package Biscolab\ReCaptcha
+ * Class TurnstileBuilder
+ * @package Nopal\Captcha\Turnstile
  */
-class ReCaptchaBuilder
+class TurnstileBuilder
 {
-
     /**
      * @var string
      */
-    const DEFAULT_API_VERSION = 'v2';
-
-    /**
-     * @var int
-     */
-    const DEFAULT_CURL_TIMEOUT = 10;
-
-    /**
-     * @var string
-     */
-    const DEFAULT_ONLOAD_JS_FUNCTION = 'biscolabOnloadCallback';
-
-    /**
-     * @var string
-     */
-    const DEFAULT_RECAPTCHA_RULE_NAME = 'recaptcha';
-
-    /**
-     * @var string
-     */
-    const DEFAULT_RECAPTCHA_FIELD_NAME = 'g-recaptcha-response';
-
-    /**
-     * @var string
-     */
-    const DEFAULT_RECAPTCHA_API_DOMAIN = 'www.google.com';
+    const DEFAULT_FIELD_NAME = 'g-recaptcha-response';
 
     /**
      * The Site key
-     * please visit https://developers.google.com/recaptcha/docs/start
+     * please visit https://developers.cloudflare.com/turnstile/get-started/
      * @var string
      */
     protected $api_site_key;
 
     /**
      * The Secret key
-     * please visit https://developers.google.com/recaptcha/docs/start
+     * please visit https://developers.cloudflare.com/turnstile/get-started/
      * @var string
      */
     protected $api_secret_key;
-
-    /**
-     * The chosen ReCAPTCHA version
-     * please visit https://developers.google.com/recaptcha/docs/start
-     * @var string
-     */
-    protected $version;
 
     /**
      * Whether is true the ReCAPTCHA is inactive
@@ -106,12 +73,10 @@ class ReCaptchaBuilder
     public function __construct(
         string $api_site_key,
         string $api_secret_key,
-        ?string $version = self::DEFAULT_API_VERSION
     ) {
 
         $this->setApiSiteKey($api_site_key);
         $this->setApiSecretKey($api_secret_key);
-        $this->setVersion($version);
         $this->setSkipByIp($this->skipByIp());
         $this->setApiDomain();
         $this->setApiUrls();
@@ -120,9 +85,9 @@ class ReCaptchaBuilder
     /**
      * @param string $api_site_key
      *
-     * @return ReCaptchaBuilder
+     * @return TurnstileBuilder
      */
-    public function setApiSiteKey(string $api_site_key): ReCaptchaBuilder
+    public function setApiSiteKey(string $api_site_key): TurnstileBuilder
     {
 
         $this->api_site_key = $api_site_key;
@@ -133,9 +98,9 @@ class ReCaptchaBuilder
     /**
      * @param string $api_secret_key
      *
-     * @return ReCaptchaBuilder
+     * @return TurnstileBuilder
      */
-    public function setApiSecretKey(string $api_secret_key): ReCaptchaBuilder
+    public function setApiSecretKey(string $api_secret_key): TurnstileBuilder
     {
 
         $this->api_secret_key = $api_secret_key;

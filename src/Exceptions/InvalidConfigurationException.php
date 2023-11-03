@@ -8,7 +8,7 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha\Exceptions;
+namespace Nopal\Captcha\Exceptions;
 
 class InvalidConfigurationException extends \Exception
 {

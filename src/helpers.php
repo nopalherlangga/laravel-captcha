@@ -9,37 +9,16 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
+use Nopal\Captcha\Facades\Captcha;
 
-if (!function_exists('recaptcha')) {
+if (!function_exists('captcha')) {
     /**
-     * @return Biscolab\ReCaptcha\ReCaptchaBuilder|\Biscolab\ReCaptcha\ReCaptchaBuilderV2|\Biscolab\ReCaptcha\ReCaptchaBuilderInvisible|\Biscolab\ReCaptcha\ReCaptchaBuilderV3
+     * @return Nopal\ReCaptcha\Captcha
      */
-    function recaptcha(): \Biscolab\ReCaptcha\ReCaptchaBuilder
+    function captcha(): \Nopal\Captcha\Captcha
     {
 
-        return app('recaptcha');
-    }
-}
-
-/**
- * call ReCaptcha::htmlScriptTagJsApi()
- * Write script HTML tag in you HTML code
- * Insert before </head> tag
- *
- * @param $config ['form_id'] required if you are using invisible ReCaptcha
- */
-if (!function_exists('htmlScriptTagJsApi')) {
-
-    /**
-     * @param array|null $config
-     *
-     * @return string
-     */
-    function htmlScriptTagJsApi(?array $config = []): string
-    {
-
-        return ReCaptcha::htmlScriptTagJsApi($config);
+        return app('captcha');
     }
 }
 
@@ -63,27 +42,7 @@ if (!function_exists('htmlFormButton')) {
     function htmlFormButton(?string $button_label = 'Submit', ?array $properties = []): string
     {
 
-        return ReCaptcha::htmlFormButton($button_label, $properties);
-    }
-}
-
-/**
- * call ReCaptcha::htmlFormSnippet()
- * Write ReCAPTCHA HTML tag in your FORM
- * Insert before </form> tag
- *
- * Warning! Using only with ReCAPTCHA v2
- */
-if (!function_exists('htmlFormSnippet')) {
-
-    /**
-     * @param null|array $attributes
-     * @return string
-     */
-    function htmlFormSnippet(?array $attributes = []): string
-    {
-
-        return ReCaptcha::htmlFormSnippet($attributes);
+        return Captcha::htmlFormButton($button_label, $properties);
     }
 }
 
@@ -100,23 +59,7 @@ if (!function_exists('getFormId')) {
     function getFormId(): string
     {
 
-        return ReCaptcha::getFormId();
-    }
-}
-
-/**
- * return ReCaptchaBuilder::DEFAULT_RECAPTCHA_RULE_NAME value ("recaptcha")
- * Use V2 (checkbox and invisible)
- */
-if (!function_exists('recaptchaRuleName')) {
-
-    /**
-     * @return string
-     */
-    function recaptchaRuleName(): string
-    {
-
-        return \Biscolab\ReCaptcha\ReCaptchaBuilder::DEFAULT_RECAPTCHA_RULE_NAME;
+        return Captcha::getFormId();
     }
 }
 
@@ -132,6 +75,6 @@ if (!function_exists('recaptchaFieldName')) {
     function recaptchaFieldName(): string
     {
 
-        return \Biscolab\ReCaptcha\ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME;
+        return \Biscolab\Captcha\ReCaptcha\ReCaptchaBuilder::DEFAULT_RECAPTCHA_FIELD_NAME;
     }
 }

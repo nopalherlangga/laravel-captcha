@@ -2,23 +2,23 @@
 
 /**
  * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - ReCaptchaBuilderV2.php
+ * LaravelCaptcha - ReCaptchaV2Builder.php
  * author: Roberto Belotti - roby.belotti@gmail.com
  * web : robertobelotti.com, github.com/biscolab
  * Initial version created on: 12/9/2018
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha;
+namespace Nopal\Captcha\Builder;
 
-use Biscolab\ReCaptcha\Exceptions\InvalidConfigurationException;
 use Illuminate\Support\Arr;
+use Nopal\Captcha\Exceptions\InvalidConfigurationException;
 
 /**
- * Class ReCaptchaBuilderV2
- * @package Biscolab\ReCaptcha
+ * Class ReCaptchaV2Builder
+ * @package Nopal\Captcha\Builder
  */
-class ReCaptchaBuilderV2 extends ReCaptchaBuilder
+class ReCaptchaV2Builder extends Builder
 {
 
     protected static $allowed_data_attribute = [
@@ -31,7 +31,7 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
     ];
 
     /**
-     * ReCaptchaBuilderV2 constructor.
+     * ReCaptchaV2Builder constructor.
      *
      * @param string $api_site_key
      * @param string $api_secret_key
@@ -79,16 +79,16 @@ class ReCaptchaBuilderV2 extends ReCaptchaBuilder
 
         $tag_attributes = array_merge($tag_attributes, config('recaptcha.tag_attributes', []));
 
-        if (Arr::get($tag_attributes, 'callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "callback" ("data-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+        if (Arr::get($tag_attributes, 'callback') === Builder::DEFAULT_ONLOAD_JS_FUNCTION) {
+            throw new InvalidConfigurationException('Property "callback" ("data-callback") must be different from "' . Builder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
         }
 
-        if (Arr::get($tag_attributes, 'expired-callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "expired-callback" ("data-expired-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+        if (Arr::get($tag_attributes, 'expired-callback') === Builder::DEFAULT_ONLOAD_JS_FUNCTION) {
+            throw new InvalidConfigurationException('Property "expired-callback" ("data-expired-callback") must be different from "' . Builder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
         }
 
-        if (Arr::get($tag_attributes, 'error-callback') === ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION) {
-            throw new InvalidConfigurationException('Property "error-callback" ("data-error-callback") must be different from "' . ReCaptchaBuilder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
+        if (Arr::get($tag_attributes, 'error-callback') === Builder::DEFAULT_ONLOAD_JS_FUNCTION) {
+            throw new InvalidConfigurationException('Property "error-callback" ("data-error-callback") must be different from "' . Builder::DEFAULT_ONLOAD_JS_FUNCTION . '"');
         }
 
         return $tag_attributes;

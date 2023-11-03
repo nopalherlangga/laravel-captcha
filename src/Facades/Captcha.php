@@ -8,20 +8,20 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha\Facades;
+namespace Nopal\Captcha\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * Class ReCaptcha
- * @package Biscolab\ReCaptcha\Facades
+ * Class Captcha
+ * @package Nopal\Captcha\Facades
  *
  * @method static string htmlScriptTagJsApi(?array $config = [])
  * @method static string htmlFormButton(?string $button_label = '', ?array $properties = [])
  * @method static string htmlFormSnippet()
  * @method static string getFormId()
  */
-class ReCaptcha extends Facade
+class Captcha extends Facade
 {
 
     /**
@@ -32,6 +32,6 @@ class ReCaptcha extends Facade
     protected static function getFacadeAccessor()
     {
 
-        return 'recaptcha';
+        return 'captcha';
     }
 }

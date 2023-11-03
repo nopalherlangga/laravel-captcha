@@ -1,5 +1,5 @@
 {
-    "name": "biscolab/laravel-recaptcha",
+    "name": "nopalherlangga/laravel-captcha",
     "description": "Simple and painless Google reCAPTCHA package for Laravel framework",
     "license": "MIT",
     "type": "library",
@@ -9,13 +9,10 @@
         "laravel",
         "validation"
     ],
-    "homepage": "https://biscolab.com/laravel-recaptcha",
     "authors": [
         {
-            "name": "Roberto Belotti",
-            "email": "roby.belotti@gmail.com",
-            "homepage": "https://biscolab.com",
-            "role": "Developer"
+            "name": "Nopal Herlangga",
+            "email": "49229021+nopalherlangga@users.noreply.github.com"
         }
     ],
     "require": {
@@ -29,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Biscolab\\ReCaptcha\\": "src/"
+            "Nopal\\Captcha\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -49,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Biscolab\\ReCaptcha\\ReCaptchaServiceProvider"
+                "Nopal\\Captcha\\CaptchaServiceProvider"
             ],
             "aliases": {
-                "ReCaptcha": "Biscolab\\ReCaptcha\\Facades\\ReCaptcha"
+                "Captcha": "Nopal\\Captcha\\Facades\\Captcha"
             }
         }
     }
