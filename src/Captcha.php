@@ -355,7 +355,7 @@ class Captcha
             return $response;
         }
 
-        return $response['success'];
+        return $response['success'] ?? false;
     }
 
     /**
