@@ -1,22 +1,22 @@
 <?php
 /**
  * Copyright (c) 2017 - present
- * LaravelGoogleRecaptcha - TestCase.php
+ * LaravelCaptcha - TestCase.php
  * author: Roberto Belotti - roby.belotti@gmail.com
  * web : robertobelotti.com, github.com/biscolab
  * Initial version created on: 12/9/2018
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha\Tests;
+namespace Nopal\Captcha\Tests;
 
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
-use Biscolab\ReCaptcha\ReCaptchaServiceProvider;
+use Nopal\Captcha\CaptchaServiceProvider;
+use Nopal\Captcha\Facades\Captcha;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 /**
  * Class TestCase
- * @package Biscolab\ReCaptcha\Tests
+ * @package Nopal\Captcha\Tests
  */
 class TestCase extends OrchestraTestCase
 {
@@ -32,7 +32,7 @@ class TestCase extends OrchestraTestCase
 	{
 
 		return [
-			'ReCaptcha' => ReCaptcha::class,
+			'Captcha' => Captcha::class,
 		];
 	}
 
@@ -46,6 +46,6 @@ class TestCase extends OrchestraTestCase
 	protected function getPackageProviders($app)
 	{
 
-		return [ReCaptchaServiceProvider::class];
+		return [CaptchaServiceProvider::class];
 	}
 }

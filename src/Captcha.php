@@ -35,7 +35,7 @@ class Captcha
     /**
      * @var string
      */
-    const DEFAULT_ONLOAD_JS_FUNCTION = 'biscolabOnloadCallback';
+    const DEFAULT_ONLOAD_JS_FUNCTION = 'captchaOnloadCallback';
 
     /**
      * @var string
@@ -363,7 +363,7 @@ class Captcha
      */
     public function getApiSiteKey(): string
     {
-        return $this->api_secret_key;
+        return $this->api_site_key;
     }
 
     /**
@@ -395,7 +395,7 @@ class Captcha
             'sitekey' => $this->api_site_key
         ];
 
-        $tag_attributes = array_merge($tag_attributes, config('recaptcha.tag_attributes', []));
+        $tag_attributes = array_merge($tag_attributes, config('captcha.tag_attributes', []));
 
         if (Arr::get($tag_attributes, 'callback') === Captcha::DEFAULT_ONLOAD_JS_FUNCTION) {
             throw new InvalidConfigurationException('Property "callback" ("data-callback") must be different from "' . Captcha::DEFAULT_ONLOAD_JS_FUNCTION . '"');

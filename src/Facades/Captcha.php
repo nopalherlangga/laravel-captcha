@@ -16,10 +16,8 @@ use Illuminate\Support\Facades\Facade;
  * Class Captcha
  * @package Nopal\Captcha\Facades
  *
- * @method static string htmlScriptTagJsApi(?array $config = [])
- * @method static string htmlFormButton(?string $button_label = '', ?array $properties = [])
- * @method static string htmlFormSnippet()
- * @method static string getFormId()
+ * @method static string renderScriptTag(?array $config = [])
+ * @method static string render(?array $attributes = [])
  */
 class Captcha extends Facade
 {

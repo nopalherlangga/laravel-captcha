@@ -16,7 +16,7 @@ return [
 
     /**
      * Captcha default version
-     * Supported: "recaptcha_v2", "recaptcha_invisible", "recaptcha_v3", "trunstile", "hcaptcha",
+     * Supported: "recaptcha_v2", "trunstile"
      */
     'version' => env('CAPTCHA_VERSION', 'recaptcha_v2'),
 
@@ -71,14 +71,6 @@ return [
 
     /**
      *
-     * Default route called to check the Google reCAPTCHA token
-     * @since v3.2.0
-     *
-     */
-    'default_validation_route'     => 'biscolab-recaptcha/validate',
-
-    /**
-     *
      * The name of the parameter used to send Google reCAPTCHA token to verify route
      * @since v3.2.0
      *
@@ -97,14 +89,6 @@ return [
 
     /**
      *
-     * The default form ID. Only for "invisible" reCAPTCHA
-     * @since v4.0.0
-     *
-     */
-    'default_form_id'              => 'biscolab-recaptcha-invisible-form',
-
-    /**
-     *
      * Deferring the render can be achieved by specifying your onload callback function and adding parameters to the JavaScript resource.
      * It has no effect with v3 and invisible
      * @see   https://developers.google.com/recaptcha/docs/display#explicit_render
@@ -113,17 +97,6 @@ return [
      *
      */
     'explicit'                     => false,
-
-    /**
-     *
-     * Set API domain. You can use "www.recaptcha.net" in case "www.google.com" is not accessible.
-     * (no check will be made on the entered value)
-     * @see   https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
-     * @since v4.3.0
-     * Default 'www.google.com' (ReCaptchaBuilder::DEFAULT_RECAPTCHA_API_DOMAIN)
-     *
-     */
-    'api_domain'                   => 'www.google.com',
 
     /**
      *

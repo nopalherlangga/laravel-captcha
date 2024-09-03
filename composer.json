@@ -34,7 +34,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Biscolab\\ReCaptcha\\Tests\\": "tests/"
+            "Nopal\\Captcha\\Tests\\": "tests/"
         }
     },
     "scripts": {

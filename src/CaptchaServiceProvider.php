@@ -11,7 +11,6 @@
 
 namespace Nopal\Captcha;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
@@ -36,7 +35,6 @@ class CaptchaServiceProvider extends ServiceProvider
     {
 
         $this->addValidationRule();
-        $this->registerRoutes();
         $this->publishes([
             __DIR__ . '/../config/captcha.php' => config_path('captcha.php'),
         ], 'config');
@@ -82,22 +80,6 @@ class CaptchaServiceProvider extends ServiceProvider
     {
 
         return ['captcha'];
-    }
-
-    /**
-     * @return CaptchaServiceProvider
-     *
-     * @since v3.4.1
-     */
-    protected function registerRoutes(): CaptchaServiceProvider
-    {
-
-        Route::get(
-            config('captcha.default_validation_route', 'biscolab-recaptcha/validate'),
-            ['uses' => 'Biscolab\Captcha\Controllers\ReCaptchaController@validateV3']
-        )->middleware('web');
-
-        return $this;
     }
 
     /**

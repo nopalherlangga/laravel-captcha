@@ -9,10 +9,10 @@
  * MIT license: https://github.com/biscolab/laravel-recaptcha/blob/master/LICENSE
  */
 
-namespace Biscolab\ReCaptcha\Tests;
+namespace Nopal\Captcha\Tests;
 
-use Biscolab\ReCaptcha\Facades\ReCaptcha;
-use Biscolab\ReCaptcha\ReCaptchaBuilderV2;
+use Nopal\Captcha\Captcha;
+use Nopal\Captcha\Facades\Captcha as FacadesCaptcha;
 
 class ReCaptchaHelpersV2Test extends TestCase
 {
@@ -20,26 +20,26 @@ class ReCaptchaHelpersV2Test extends TestCase
     /**
      * @test
      */
-    public function testHtmlScriptTagJsApiCalledByFacade()
+    public function testRenderScriptTagCalledByFacade()
     {
 
-        ReCaptcha::shouldReceive('htmlScriptTagJsApi')
+        FacadesCaptcha::shouldReceive('renderScriptTag')
             ->once()
             ->with(["key" => "val"]);
 
-        htmlScriptTagJsApi(["key" => "val"]);
+        captcha()->renderScriptTag(["key" => "val"]);
     }
 
     /**
      * @test
      */
-    public function testHtmlFormSnippetCalledByFacade()
+    public function testRenderCalledByFacade()
     {
 
-        ReCaptcha::shouldReceive('htmlFormSnippet')
+        FacadesCaptcha::shouldReceive('render')
             ->once();
 
-        htmlFormSnippet();
+        captcha()->render();
     }
 
     /**
@@ -48,7 +48,7 @@ class ReCaptchaHelpersV2Test extends TestCase
     public function testTagAttributes()
     {
 
-        $recaptcha = \recaptcha();
+        $recaptcha = \captcha();
 
         $tag_attributes = $recaptcha->getTagAttributes();
 
@@ -75,7 +75,7 @@ class ReCaptchaHelpersV2Test extends TestCase
     public function testExpectReCaptchaInstanceOfReCaptchaBuilderV2()
     {
 
-        $this->assertInstanceOf(ReCaptchaBuilderV2::class, \recaptcha());
+        $this->assertInstanceOf(Captcha::class, captcha());
     }
 
     /**
@@ -90,10 +90,10 @@ class ReCaptchaHelpersV2Test extends TestCase
     /**
      * @test
      */
-    public function testHtmlFormSnippet()
+    public function testRender()
     {
 
-        $html_snippet = \recaptcha()->htmlFormSnippet();
+        $html_snippet = \captcha()->render();
         $this->assertEquals(
             '<div class="g-recaptcha" data-callback="callbackFunction" data-error-callback="errorCallbackFunction" data-expired-callback="expiredCallbackFunction" data-sitekey="api_site_key" data-size="compact" data-tabindex="2" data-theme="dark" id="recaptcha-element"></div>',
             $html_snippet
@@ -103,10 +103,10 @@ class ReCaptchaHelpersV2Test extends TestCase
     /**
      * @test
      */
-    public function testHtmlFormSnippetOverridesDefaultAttributes()
+    public function testRenderOverridesDefaultAttributes()
     {
 
-        $html_snippet = \recaptcha()->htmlFormSnippet([
+        $html_snippet = \captcha()->render([
             "theme" => "light",
             "size" => "normal",
             "tabindex" => "3",
@@ -126,7 +126,7 @@ class ReCaptchaHelpersV2Test extends TestCase
      */
     public function testCleanAttributesReturnsOnlyAllowedAttributes()
     {
-        $attributes = ReCaptchaBuilderV2::cleanAttributes([
+        $attributes = Captcha::cleanAttributes([
             "theme" => "theme",
             "size" => "size",
             "tabindex" => "tabindex",
@@ -147,9 +147,9 @@ class ReCaptchaHelpersV2Test extends TestCase
     /**
      * @test
      */
-    public function testHtmlFormSnippetKeepsDefaultConfigValuesUnlessOtherwiseStated()
+    public function testRenderKeepsDefaultConfigValuesUnlessOtherwiseStated()
     {
-        $html_snippet = \recaptcha()->htmlFormSnippet([
+        $html_snippet = \captcha()->render([
             'callback'         => 'callbackFunction',
             'expired-callback' => 'expiredCallbackFunction',
             'error-callback'   => 'errorCallbackFunction',
@@ -170,9 +170,9 @@ class ReCaptchaHelpersV2Test extends TestCase
     protected function getEnvironmentSetUp($app)
     {
 
-        $app['config']->set('recaptcha.api_site_key', 'api_site_key');
-        $app['config']->set('recaptcha.version', 'v2');
-        $app['config']->set('recaptcha.tag_attributes', [
+        $app['config']->set('captcha.recaptcha.site_key', 'api_site_key');
+        $app['config']->set('captcha.version', 'recaptcha_v2');
+        $app['config']->set('captcha.tag_attributes', [
             'theme'            => 'dark',
             'size'             => 'compact',
             'tabindex'         => '2',
